@@ -580,10 +580,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: a379ff75-c721-4e1b-b6e0-f89398ebb1a5
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: gdhq-space-shooter
+  organizationId: jsrj
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
