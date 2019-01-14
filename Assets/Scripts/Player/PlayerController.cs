@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float x = 0.0f;
-    private float y = -3.0f;
-    private float z = 0.0f;
+    public float x = 0.0f;
+    public float y = -3.85f;
+    public float z = 0.0f;
     private Vector3 pos;
 
     // Start is called before the first frame update
