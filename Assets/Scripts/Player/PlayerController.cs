@@ -2,26 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
-    private int frameCount = 0;
+    private float x = 0.0f;
+    private float y = -3.0f;
+    private float z = 0.0f;
+    private Vector3 pos;
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Player Controller Initialized...");
+        Debug.Log(this.name + " Initialized...");
+        transform.position = new Vector3(this.x, this.y, this.z);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(frameCount);
-
-        if (frameCount >= 1000) {
-            frameCount = 0;
-            Debug.Log("Frame Counter Reset");
-        } else {
-            frameCount += 1;
-        }
+        transform.position = new Vector3(this.x, this.y, this.z);
     }
 }
