@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
         // Set starting movement values
         this.topBuffer              = -2.45f;
-        this.verticalBounds         = 3.85f;
+        this.verticalBounds         = 3.00f;
         this.horizontalBounds       = 9.25f;
         this.accelerationMultiplier = 6.00f;
 
@@ -49,19 +49,18 @@ public class PlayerController : MonoBehaviour
             transform.Translate(Vector2.right * Time.deltaTime * (accelerationMultiplier * horizontalAxis));
         }
 
-        // Reset vertical axis when it gets stuck
-        if (
-            (Input.GetKey(KeyCode.W) 
-            ||
-            Input.GetKey(KeyCode.D)
-            ||
-            Input.GetKey(KeyCode.UpArrow)
-            ||
-            Input.GetKey(KeyCode.DownArrow)) 
-            && 
-            this.verticalAxis != 0
-        ) {
-            this.verticalAxis = 0.00f;
+        // Bounceback into play area if player goes slightly out of bounds
+        if (transform.position.x < -horizontalBounds) {
+            this.horizontalAxis = 1;
+        }
+        if (transform.position.x > horizontalBounds) {
+            this.horizontalAxis = -1;
+        }
+        if (transform.position.y < -verticalBounds) {
+            this.verticalAxis = 1;
+        }
+        if (transform.position.y > verticalBounds) {
+            this.verticalAxis = 1;
         }
     }
     // Update is called once per frame
