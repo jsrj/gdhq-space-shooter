@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    
+
     private float startX = 0.0f;
     private float startY = -3.85f;
     private float startZ = 0.0f;
 
-    public float topBuffer = -2.45f;
-    public float verticalBounds = 3.85f;
-    public float horizontalBounds = 9.25f;
-    public float accelerationMultiplier = 0.15f;
+    public float topBuffer;
+    public float verticalBounds;
+    public float horizontalBounds;
+    public float accelerationMultiplier;
 
 
     // Start is called before the first frame update
@@ -21,6 +21,14 @@ public class PlayerController : MonoBehaviour
     {
 
         Debug.Log(this.name + " Initialized...");
+
+        // Set starting movement values
+        this.topBuffer              = -2.45f;
+        this.verticalBounds         = 3.85f;
+        this.horizontalBounds       = 9.25f;
+        this.accelerationMultiplier = 0.15f;
+
+        // Set starting position
         transform.position = new Vector3(this.startX, this.startY, this.startZ);
     }
 
