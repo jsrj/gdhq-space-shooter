@@ -27,9 +27,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private ArrayList boltArray = new ArrayList();
 
-    [SerializeField]
-    private float laserBoltSpeed = 6.00f;
-
 
 
     // Start is called before the first frame update
