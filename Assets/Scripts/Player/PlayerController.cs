@@ -9,12 +9,18 @@ public class PlayerController : MonoBehaviour
     private float startX = 0.0f;
     private float startY = -3.85f;
 
-    public float topBuffer;
-    public float verticalAxis;
-    public float horizontalAxis;
-    public float verticalBounds;
-    public float horizontalBounds;
-    public float accelerationMultiplier;
+    [SerializeField]
+    private float verticalAxis;
+    [SerializeField]
+    private float horizontalAxis;
+    [SerializeField]
+    private float topBuffer;
+    [SerializeField]
+    private float verticalBounds;
+    [SerializeField]
+    private float horizontalBounds;
+    [SerializeField]
+    private float accelerationMultiplier;
 
 
     // Start is called before the first frame update
