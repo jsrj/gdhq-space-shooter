@@ -24,10 +24,6 @@ public class PlayerController : MonoBehaviour
 
     public GameObject laserBolt;
 
-    [SerializeField]
-    private ArrayList boltArray = new ArrayList();
-
-
 
     // Start is called before the first frame update
     void Start()
@@ -102,7 +98,5 @@ public class PlayerController : MonoBehaviour
             new Vector3(transform.position.x, transform.position.y+0.73f, 0.00f), 
             Quaternion.identity
         );
-
-        boltArray.Add(bolt);
     }
 }
