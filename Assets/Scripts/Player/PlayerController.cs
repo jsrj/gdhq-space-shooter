@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
         this.topBuffer              = -2.45f;
         this.verticalBounds         = 3.85f;
         this.horizontalBounds       = 9.25f;
-        this.accelerationMultiplier = 0.15f;
+        this.accelerationMultiplier = 6.00f;
 
         // Set starting position
         transform.position = new Vector3(this.startX, this.startY, this.startZ);
@@ -36,23 +36,39 @@ public class PlayerController : MonoBehaviour
     {
 
         // move ship forward
-        if (Input.GetKey(KeyCode.W) && transform.position.y <= verticalBounds+topBuffer) {
-            transform.Translate(Vector2.up * accelerationMultiplier);
+        if (
+            (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) 
+            && 
+            transform.position.y <= verticalBounds+topBuffer
+        ) {
+            transform.Translate(Vector2.up * Time.deltaTime * accelerationMultiplier);
         }
 
         // move ship backward
-        if (Input.GetKey(KeyCode.S) && transform.position.y >= -verticalBounds) {
-            transform.Translate(Vector2.down * accelerationMultiplier);
+        if (
+            (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) 
+            && 
+            transform.position.y >= -verticalBounds
+        ) {
+            transform.Translate(Vector2.down * Time.deltaTime * accelerationMultiplier);
         }
 
         // move ship left
-        if (Input.GetKey(KeyCode.A) && transform.position.x >= -horizontalBounds) {
-            transform.Translate(Vector2.left * accelerationMultiplier);
+        if ((
+            Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) 
+            && 
+            transform.position.x >= -horizontalBounds
+        ) {
+            transform.Translate(Vector2.left * Time.deltaTime * accelerationMultiplier);
         }
 
         // move ship right
-        if (Input.GetKey(KeyCode.D) && transform.position.x <= horizontalBounds) {
-            transform.Translate(Vector2.right * accelerationMultiplier);
+        if (
+            (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow)) 
+            && 
+            transform.position.x <= horizontalBounds
+        ) {
+            transform.Translate(Vector2.right * Time.deltaTime * accelerationMultiplier);
         }
     }
     // Update is called once per frame
