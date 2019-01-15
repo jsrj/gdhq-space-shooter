@@ -497,6 +497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ae3c492f2bad41a78c27c88a9e1a814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 0
-  y: -3.85
-  z: 0
+  topBuffer: 1
+  verticalBounds: 3.85
+  horizontalBounds: 3.85
+  accelerationMultiplier: 0.05
