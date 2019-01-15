@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
         // move ship right
         if (
-            (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow)) 
+            (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) 
             && 
             transform.position.x <= horizontalBounds
         ) {
