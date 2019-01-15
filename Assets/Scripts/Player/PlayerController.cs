@@ -24,6 +24,10 @@ public class PlayerController : MonoBehaviour
 
     public GameObject laserBolt;
 
+    public int laserBoltCount;
+
+    private ArrayList boltArray = new ArrayList();
+
 
     // Start is called before the first frame update
     void Start()
@@ -54,8 +58,20 @@ public class PlayerController : MonoBehaviour
         // TODO: Add conditional sprite animation depending on which direction player is moving
 
         // If spacekey pressed, spawn laser prefab and accelerate forward along Y axis 
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space) && laserBoltCount < 3) {
             this.fireLaserBolt();
+        }
+
+        // Updates laser bolt count
+        this.laserBoltCount = this.boltArray.ToArray().Length;
+
+        // Checks if any laser bolts have self-destructed
+        foreach (GameObject bolt in this.boltArray) {
+
+            if (bolt == null) {
+                this.boltArray.Remove(bolt);
+                break; // <- Required to avoid a collection modification error
+            }
         }
     }
 
@@ -98,5 +114,7 @@ public class PlayerController : MonoBehaviour
             new Vector3(transform.position.x, transform.position.y+0.73f, 0.00f), 
             Quaternion.identity
         );
+
+        this.boltArray.Add(bolt);
     }
 }
