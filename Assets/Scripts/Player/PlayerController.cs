@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
         // Set starting movement values
         this.topBuffer              = -2.45f;
-        this.verticalBounds         = 3.00f;
+        this.verticalBounds         = 3.85f;
         this.horizontalBounds       = 9.25f;
         this.accelerationMultiplier = 6.00f;
 
@@ -48,24 +48,24 @@ public class PlayerController : MonoBehaviour
             this.horizontalAxis = Input.GetAxis("Horizontal");
             transform.Translate(Vector2.right * Time.deltaTime * (accelerationMultiplier * horizontalAxis));
         }
-
-        // Bounceback into play area if player goes slightly out of bounds
-        if (transform.position.x < -horizontalBounds) {
-            this.horizontalAxis = 1;
-        }
-        if (transform.position.x > horizontalBounds) {
-            this.horizontalAxis = -1;
-        }
-        if (transform.position.y < -verticalBounds) {
-            this.verticalAxis = 1;
-        }
-        if (transform.position.y > verticalBounds) {
-            this.verticalAxis = 1;
-        }
     }
     // Update is called once per frame
     void Update()
     {
+        // Bounceback into play area if player goes slightly out of bounds
+        if (transform.position.x < -horizontalBounds) {
+            transform.Translate(Vector2.right * Time.deltaTime * 1.00f);
+        }
+        if (transform.position.x > horizontalBounds) {
+            transform.Translate(Vector2.right * Time.deltaTime * -1.00f);
+        }
+        if (transform.position.y < startY) {
+            transform.Translate(Vector2.up * Time.deltaTime * 1.00f);
+        }
+        if (transform.position.y > verticalBounds+topBuffer) {
+            transform.Translate(Vector2.up * Time.deltaTime * -1.00f);
+        }
+
         // TODO: Add conditional sprite animation depending on which direction player is moving
     }
 }
