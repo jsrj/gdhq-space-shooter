@@ -22,6 +22,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float accelerationMultiplier;
 
+    public GameObject laserBolt;
+
+    [SerializeField]
+    private ArrayList boltArray = new ArrayList();
+
+    [SerializeField]
+    private float laserBoltSpeed = 6.00f;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +57,13 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         this.boundaryCheck();
+
         // TODO: Add conditional sprite animation depending on which direction player is moving
+
+        // If spacekey pressed, spawn laser prefab and accelerate forward along Y axis 
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            this.fireLaserBolt();
+        }
     }
 
     private void processMovement() {
@@ -81,5 +96,16 @@ public class PlayerController : MonoBehaviour
         if (transform.position.y > verticalBounds+topBuffer) {
             transform.position = new Vector2(transform.position.x, verticalBounds+topBuffer);
         }
+    }
+
+    private void fireLaserBolt() {
+
+        GameObject bolt = Instantiate(
+            this.laserBolt, 
+            new Vector3(transform.position.x, transform.position.y+0.73f, 0.00f), 
+            Quaternion.identity
+        );
+
+        boltArray.Add(bolt);
     }
 }
