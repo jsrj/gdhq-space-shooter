@@ -5,12 +5,13 @@ using UnityEngine;
 public class LaserBoltController : MonoBehaviour
 {
     [SerializeField]
-    private float laserBoltSpeed = 6.00f;
+    private float laserBoltSpeed;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        this.laserBoltSpeed = 20.00f;
     }
 
     // Update is called once per frame

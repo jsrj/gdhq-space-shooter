@@ -93,3 +93,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserBoltSpeed: 20
+  playerController: {fileID: 0}
