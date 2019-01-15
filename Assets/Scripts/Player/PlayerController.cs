@@ -58,6 +58,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        // TODO: Add conditional sprite animation depending on which direction player is moving
     }
 }
