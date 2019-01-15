@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     public float verticalBounds;
     public float horizontalBounds;
     public float accelerationMultiplier;
+    public float verticalAxis;
+    public float horizontalAxis;
 
 
     // Start is called before the first frame update
@@ -35,40 +37,31 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
 
-        // move ship forward
-        if (
-            (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) 
-            && 
-            transform.position.y <= verticalBounds+topBuffer
-        ) {
-            transform.Translate(Vector2.up * Time.deltaTime * accelerationMultiplier);
+        // move ship forward and backward
+        if (transform.position.y >= -verticalBounds && transform.position.y <= verticalBounds+topBuffer) {
+            this.verticalAxis = Input.GetAxis("Vertical");
+            transform.Translate(Vector2.up * Time.deltaTime * (accelerationMultiplier * verticalAxis));
         }
 
-        // move ship backward
-        if (
-            (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) 
-            && 
-            transform.position.y >= -verticalBounds
-        ) {
-            transform.Translate(Vector2.down * Time.deltaTime * accelerationMultiplier);
+        // move ship left and right
+        if (transform.position.x >= -horizontalBounds && transform.position.x <= horizontalBounds) {
+            this.horizontalAxis = Input.GetAxis("Horizontal");
+            transform.Translate(Vector2.right * Time.deltaTime * (accelerationMultiplier * horizontalAxis));
         }
 
-        // move ship left
-        if ((
-            Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) 
-            && 
-            transform.position.x >= -horizontalBounds
-        ) {
-            transform.Translate(Vector2.left * Time.deltaTime * accelerationMultiplier);
-        }
-
-        // move ship right
+        // Reset vertical axis when it gets stuck
         if (
-            (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) 
+            (Input.GetKey(KeyCode.W) 
+            ||
+            Input.GetKey(KeyCode.D)
+            ||
+            Input.GetKey(KeyCode.UpArrow)
+            ||
+            Input.GetKey(KeyCode.DownArrow)) 
             && 
-            transform.position.x <= horizontalBounds
+            this.verticalAxis != 0
         ) {
-            transform.Translate(Vector2.right * Time.deltaTime * accelerationMultiplier);
+            this.verticalAxis = 0.00f;
         }
     }
     // Update is called once per frame
