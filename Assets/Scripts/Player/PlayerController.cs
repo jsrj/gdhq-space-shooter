@@ -54,16 +54,16 @@ public class PlayerController : MonoBehaviour
     {
         // Bounceback into play area if player goes slightly out of bounds
         if (transform.position.x < -horizontalBounds) {
-            transform.Translate(Vector2.right * Time.deltaTime * 1.00f);
+            transform.position = new Vector2(-horizontalBounds, transform.position.y);
         }
         if (transform.position.x > horizontalBounds) {
-            transform.Translate(Vector2.right * Time.deltaTime * -1.00f);
+            transform.position = new Vector2(horizontalBounds, transform.position.y);
         }
-        if (transform.position.y < startY) {
-            transform.Translate(Vector2.up * Time.deltaTime * 1.00f);
+        if (transform.position.y < -verticalBounds) {
+            transform.position = new Vector2(transform.position.x, -verticalBounds);
         }
         if (transform.position.y > verticalBounds+topBuffer) {
-            transform.Translate(Vector2.up * Time.deltaTime * -1.00f);
+            transform.position = new Vector2(transform.position.x, verticalBounds+topBuffer);
         }
 
         // TODO: Add conditional sprite animation depending on which direction player is moving
