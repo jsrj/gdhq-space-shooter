@@ -8,14 +8,13 @@ public class PlayerController : MonoBehaviour
 
     private float startX = 0.0f;
     private float startY = -3.85f;
-    private float startZ = 0.0f;
 
     public float topBuffer;
+    public float verticalAxis;
+    public float horizontalAxis;
     public float verticalBounds;
     public float horizontalBounds;
     public float accelerationMultiplier;
-    public float verticalAxis;
-    public float horizontalAxis;
 
 
     // Start is called before the first frame update
@@ -31,11 +30,22 @@ public class PlayerController : MonoBehaviour
         this.accelerationMultiplier = 6.00f;
 
         // Set starting position
-        transform.position = new Vector3(this.startX, this.startY, this.startZ);
+        transform.position = new Vector2(this.startX, this.startY);
     }
 
     void FixedUpdate()
     {
+        this.processMovement();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        this.boundaryCheck();
+        // TODO: Add conditional sprite animation depending on which direction player is moving
+    }
+
+    private void processMovement() {
 
         // move ship forward and backward
         if (transform.position.y >= -verticalBounds && transform.position.y <= verticalBounds+topBuffer) {
@@ -49,10 +59,10 @@ public class PlayerController : MonoBehaviour
             transform.Translate(Vector2.right * Time.deltaTime * (accelerationMultiplier * horizontalAxis));
         }
     }
-    // Update is called once per frame
-    void Update()
-    {
-        // Bounceback into play area if player goes slightly out of bounds
+
+    private void boundaryCheck() {
+
+        // Establish play area boundaries
         if (transform.position.x < -horizontalBounds) {
             transform.position = new Vector2(-horizontalBounds, transform.position.y);
         }
@@ -65,7 +75,5 @@ public class PlayerController : MonoBehaviour
         if (transform.position.y > verticalBounds+topBuffer) {
             transform.position = new Vector2(transform.position.x, verticalBounds+topBuffer);
         }
-
-        // TODO: Add conditional sprite animation depending on which direction player is moving
     }
 }
