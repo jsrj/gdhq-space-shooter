@@ -18,5 +18,10 @@ public class LaserBoltController : MonoBehaviour
     {
         // Accelerates each laserBolt instance forward along Y axis
         transform.Translate(Vector2.up * Time.deltaTime * this.laserBoltSpeed);
+
+        // Destroy a laser bolt once it has moved a certain range out of camera frustrum
+        if (transform.position.y > 10.00f) {
+            GameObject.Destroy(this.gameObject);
+        }
     }
 }
