@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
 public class PlayerController : MonoBehaviour
 {
 
@@ -22,22 +23,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float accelerationMultiplier;
 
-    public GameObject laserBolt;
+    [SerializeField]
+    private GameObject laserBolt;
 
-    public int laserBoltCount;
-    public float cannonCooldown;
-    public float fireRate;
+    private float fireRate;
+    private int laserBoltCount;
+    private float cannonCooldown;
 
-    private ArrayList boltArray = new ArrayList();
     [SerializeField]
     private int boltsFired = 0;
+    private ArrayList boltArray = new ArrayList();
 
 
-    // Start is called before the first frame update
     void Start()
     {
-
-        Debug.Log(this.name + " Initialized...");
 
         // Set starting movement values
         this.topBuffer              = -2.45f;
@@ -48,21 +47,23 @@ public class PlayerController : MonoBehaviour
         // Set starting position
         transform.position = new Vector2(this.startX, this.startY);
 
-        this.cannonCooldown = 0.00f;
+        // Initialize fire rate and cooldown values
         this.fireRate = 0.45f;
+        this.cannonCooldown = 0.00f;
     }
 
     void FixedUpdate()
     {
+        // Handle player movement logic
         this.processMovement();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
 
         // Monitor that player remains in game area
         this.boundaryCheck();
+    }
+
+
+    void Update()
+    {
 
         // TODO: Add conditional sprite animation depending on which direction player is moving
 
@@ -81,7 +82,7 @@ public class PlayerController : MonoBehaviour
         // Updates laser bolt count
         this.laserBoltCount = this.boltArray.ToArray().Length;
 
-        // Checks if any laser bolts have self-destructed
+        // Remove any laser bolts that have self-destructed
         foreach (GameObject bolt in this.boltArray) {
             if (bolt == null) {
                 this.boltArray.Remove(bolt);
@@ -89,6 +90,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
 
     private void processMovement() {
 
@@ -104,6 +106,7 @@ public class PlayerController : MonoBehaviour
             transform.Translate(Vector2.right * Time.deltaTime * (accelerationMultiplier * horizontalAxis));
         }
     }
+
 
     private void boundaryCheck() {
 
@@ -121,6 +124,7 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector2(transform.position.x, verticalBounds+topBuffer);
         }
     }
+
 
     private void fireLaserBolt() {
 
