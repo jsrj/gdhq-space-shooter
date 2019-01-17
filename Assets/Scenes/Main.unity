@@ -497,12 +497,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ae3c492f2bad41a78c27c88a9e1a814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalAxis: -0.72
-  horizontalAxis: 0
-  topBuffer: 1
-  verticalBounds: 3.85
-  horizontalBounds: 3.85
-  accelerationMultiplier: 0.05
-  laserBolt: {fileID: 5800541518945159040, guid: 3a022c42024084151b8ac25ed16b2b82,
+  _verticalAxis: 0
+  _horizontalAxis: 0
+  _topBuffer: 0
+  _verticalBounds: 0
+  _horizontalBounds: 0
+  _accelerationMultiplier: 0
+  _laserBolt: {fileID: 5800541518945159040, guid: 3a022c42024084151b8ac25ed16b2b82,
     type: 3}
-  boltsFired: 0
+  _boltsFired: 0
