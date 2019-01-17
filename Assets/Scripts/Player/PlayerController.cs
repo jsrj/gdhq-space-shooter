@@ -142,8 +142,8 @@ public class PlayerController : MonoBehaviour
 
         GameObject rightWingBolt = Instantiate(
             this._laserBolt,
-            new Vector3(transform.position.x+0.40f, transform.position.y+0.076f,0.00f),
-            Quaternion.identity
+            new Vector3(transform.position.x+0.40f, transform.position.y+0.73f,0.00f),
+            Quaternion.Euler(0.00f, 0.00f, -25.00f)
         );
 
         GameObject centerBolt = Instantiate(
@@ -154,8 +154,8 @@ public class PlayerController : MonoBehaviour
 
         GameObject leftWingBolt = Instantiate(
             this._laserBolt,
-            new Vector3(transform.position.x-0.4f, transform.position.y+0.076f, 0.00f),
-            Quaternion.identity
+            new Vector3(transform.position.x-0.4f, transform.position.y+0.73f, 0.00f),
+            Quaternion.Euler(0.00f, 0.00f, 25.00f)
         );
     }
 }
