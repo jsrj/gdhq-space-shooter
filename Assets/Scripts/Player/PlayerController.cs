@@ -71,7 +71,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > this._cannonCooldown) {
 
             if (this._boltCount < 3 || _boltsFired < 3) {
-                this.fireZeLaser();
+                //this.fireZeLaser();
+                this.fireTripleShot();
                 this._boltsFired++;
             } else {
                 this._cannonCooldown = Time.time + this._fireRate;
@@ -135,5 +136,26 @@ public class PlayerController : MonoBehaviour
         );
 
         this._boltArray.Add(bolt);
+    }
+
+    private void fireTripleShot() {
+
+        GameObject rightWingBolt = Instantiate(
+            this._laserBolt,
+            new Vector3(transform.position.x+0.40f, transform.position.y+0.076f,0.00f),
+            Quaternion.identity
+        );
+
+        GameObject centerBolt = Instantiate(
+            this._laserBolt,
+            new Vector3(transform.position.x, transform.position.y+0.73f, 0.00f),
+            Quaternion.identity
+        );
+
+        GameObject leftWingBolt = Instantiate(
+            this._laserBolt,
+            new Vector3(transform.position.x-0.4f, transform.position.y+0.076f, 0.00f),
+            Quaternion.identity
+        );
     }
 }

@@ -92,5 +92,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bed6c9a4c060e4d68a36b19ee58003c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserBoltSpeed: 20
-  playerController: {fileID: 0}
+  _laserBoltSpeed: 0
