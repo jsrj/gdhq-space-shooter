@@ -505,4 +505,4 @@ MonoBehaviour:
   accelerationMultiplier: 0.05
   laserBolt: {fileID: 5800541518945159040, guid: 3a022c42024084151b8ac25ed16b2b82,
     type: 3}
-  laserBoltSpeed: 6
+  boltsFired: 0

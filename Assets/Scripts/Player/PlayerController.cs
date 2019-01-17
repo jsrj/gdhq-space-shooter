@@ -7,49 +7,49 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    private float startX = 0.0f;
-    private float startY = -3.85f;
+    private float _startX = 0.0f;
+    private float _startY = -3.85f;
 
     [SerializeField]
-    private float verticalAxis;
+    private float _verticalAxis;
     [SerializeField]
-    private float horizontalAxis;
+    private float _horizontalAxis;
     [SerializeField]
-    private float topBuffer;
+    private float _topBuffer;
     [SerializeField]
-    private float verticalBounds;
+    private float _verticalBounds;
     [SerializeField]
-    private float horizontalBounds;
+    private float _horizontalBounds;
     [SerializeField]
-    private float accelerationMultiplier;
+    private float _accelerationMultiplier;
 
     [SerializeField]
-    private GameObject laserBolt;
+    private GameObject _laserBolt;
 
-    private float fireRate;
-    private int laserBoltCount;
-    private float cannonCooldown;
+    private float _fireRate;
+    private int _boltCount;
+    private float _cannonCooldown;
 
     [SerializeField]
-    private int boltsFired = 0;
-    private ArrayList boltArray = new ArrayList();
+    private int _boltsFired = 0;
+    private ArrayList _boltArray = new ArrayList();
 
 
     void Start()
     {
 
         // Set starting movement values
-        this.topBuffer              = -2.45f;
-        this.verticalBounds         = 3.85f;
-        this.horizontalBounds       = 9.25f;
-        this.accelerationMultiplier = 6.00f;
+        this._topBuffer              = -2.45f;
+        this._verticalBounds         = 3.85f;
+        this._horizontalBounds       = 9.25f;
+        this._accelerationMultiplier = 6.00f;
 
         // Set starting position
-        transform.position = new Vector2(this.startX, this.startY);
+        transform.position = new Vector2(this._startX, this._startY);
 
         // Initialize fire rate and cooldown values
-        this.fireRate = 0.45f;
-        this.cannonCooldown = 0.00f;
+        this._fireRate = 0.45f;
+        this._cannonCooldown = 0.00f;
     }
 
     void FixedUpdate()
@@ -68,24 +68,24 @@ public class PlayerController : MonoBehaviour
         // TODO: Add conditional sprite animation depending on which direction player is moving
 
         // Default laser bolt cannon 3-round burst and cooldown logic
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time > this.cannonCooldown) {
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time > this._cannonCooldown) {
 
-            if (this.laserBoltCount < 3 || boltsFired < 3) {
-                this.fireLaserBolt();
-                this.boltsFired++;
+            if (this._boltCount < 3 || _boltsFired < 3) {
+                this.fireZeLaser();
+                this._boltsFired++;
             } else {
-                this.cannonCooldown = Time.time + this.fireRate;
-                this.boltsFired = 0;
+                this._cannonCooldown = Time.time + this._fireRate;
+                this._boltsFired = 0;
             }
         }
 
         // Updates laser bolt count
-        this.laserBoltCount = this.boltArray.ToArray().Length;
+        this._boltCount = this._boltArray.ToArray().Length;
 
         // Remove any laser bolts that have self-destructed
-        foreach (GameObject bolt in this.boltArray) {
+        foreach (GameObject bolt in this._boltArray) {
             if (bolt == null) {
-                this.boltArray.Remove(bolt);
+                this._boltArray.Remove(bolt);
                 break; // <- Required to avoid collection modification errors
             }
         }
@@ -95,15 +95,15 @@ public class PlayerController : MonoBehaviour
     private void processMovement() {
 
         // move ship forward and backward
-        if (transform.position.y >= -verticalBounds && transform.position.y <= verticalBounds+topBuffer) {
-            this.verticalAxis = Input.GetAxis("Vertical");
-            transform.Translate(Vector2.up * Time.deltaTime * (accelerationMultiplier * verticalAxis));
+        if (transform.position.y >= -_verticalBounds && transform.position.y <= _verticalBounds+_topBuffer) {
+            this._verticalAxis = Input.GetAxis("Vertical");
+            transform.Translate(Vector2.up * Time.deltaTime * (_accelerationMultiplier * _verticalAxis));
         }
 
         // move ship left and right
-        if (transform.position.x >= -horizontalBounds && transform.position.x <= horizontalBounds) {
-            this.horizontalAxis = Input.GetAxis("Horizontal");
-            transform.Translate(Vector2.right * Time.deltaTime * (accelerationMultiplier * horizontalAxis));
+        if (transform.position.x >= -_horizontalBounds && transform.position.x <= _horizontalBounds) {
+            this._horizontalAxis = Input.GetAxis("Horizontal");
+            transform.Translate(Vector2.right * Time.deltaTime * (_accelerationMultiplier * _horizontalAxis));
         }
     }
 
@@ -111,29 +111,29 @@ public class PlayerController : MonoBehaviour
     private void boundaryCheck() {
 
         // Establish play area boundaries
-        if (transform.position.x < -horizontalBounds) {
-            transform.position = new Vector2(-horizontalBounds, transform.position.y);
+        if (transform.position.x < -_horizontalBounds) {
+            transform.position = new Vector2(-_horizontalBounds, transform.position.y);
         }
-        if (transform.position.x > horizontalBounds) {
-            transform.position = new Vector2(horizontalBounds, transform.position.y);
+        if (transform.position.x > _horizontalBounds) {
+            transform.position = new Vector2(_horizontalBounds, transform.position.y);
         }
-        if (transform.position.y < -verticalBounds) {
-            transform.position = new Vector2(transform.position.x, -verticalBounds);
+        if (transform.position.y < -_verticalBounds) {
+            transform.position = new Vector2(transform.position.x, -_verticalBounds);
         }
-        if (transform.position.y > verticalBounds+topBuffer) {
-            transform.position = new Vector2(transform.position.x, verticalBounds+topBuffer);
+        if (transform.position.y > _verticalBounds+_topBuffer) {
+            transform.position = new Vector2(transform.position.x, _verticalBounds+_topBuffer);
         }
     }
 
 
-    private void fireLaserBolt() {
+    private void fireZeLaser() {
 
         GameObject bolt = Instantiate(
-            this.laserBolt, 
+            this._laserBolt, 
             new Vector3(transform.position.x, transform.position.y+0.73f, 0.00f), 
             Quaternion.identity
         );
 
-        this.boltArray.Add(bolt);
+        this._boltArray.Add(bolt);
     }
 }
