@@ -25,8 +25,12 @@ public class PlayerController : MonoBehaviour
     public GameObject laserBolt;
 
     public int laserBoltCount;
+    public float cannonCooldown;
+    public float fireRate;
 
     private ArrayList boltArray = new ArrayList();
+    [SerializeField]
+    private int boltsFired = 0;
 
 
     // Start is called before the first frame update
@@ -43,6 +47,9 @@ public class PlayerController : MonoBehaviour
 
         // Set starting position
         transform.position = new Vector2(this.startX, this.startY);
+
+        this.cannonCooldown = 0.00f;
+        this.fireRate = 0.45f;
     }
 
     void FixedUpdate()
@@ -53,13 +60,22 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        // Monitor that player remains in game area
         this.boundaryCheck();
 
         // TODO: Add conditional sprite animation depending on which direction player is moving
 
-        // If spacekey pressed, spawn laser prefab and accelerate forward along Y axis 
-        if (Input.GetKeyDown(KeyCode.Space) && laserBoltCount < 3) {
-            this.fireLaserBolt();
+        // Default laser bolt cannon 3-round burst and cooldown logic
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time > this.cannonCooldown) {
+
+            if (this.laserBoltCount < 3 || boltsFired < 3) {
+                this.fireLaserBolt();
+                this.boltsFired++;
+            } else {
+                this.cannonCooldown = Time.time + this.fireRate;
+                this.boltsFired = 0;
+            }
         }
 
         // Updates laser bolt count
@@ -67,10 +83,9 @@ public class PlayerController : MonoBehaviour
 
         // Checks if any laser bolts have self-destructed
         foreach (GameObject bolt in this.boltArray) {
-
             if (bolt == null) {
                 this.boltArray.Remove(bolt);
-                break; // <- Required to avoid a collection modification error
+                break; // <- Required to avoid collection modification errors
             }
         }
     }
