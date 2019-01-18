@@ -31,6 +31,17 @@ public class PowerUpLogic : MonoBehaviour
         transform.Translate(Vector2.down * this._descendSpeed * Time.deltaTime);
 
         // Move power up left and right as it descends
+        // IF x position is less than 0 and greater than negative drift range
+        // THEN move left
+        if (transform.position.x > -this._driftRange) {
+
+        }
+        
+        // IF x position is greater than 0 and and less than drift range
+        // THEN move right
+
+        // IF x position is exactly 0
+        // THEN randomly choose a drift direction
 
     }
 }
