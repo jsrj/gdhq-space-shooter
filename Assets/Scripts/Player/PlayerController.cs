@@ -32,7 +32,10 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private int _boltsFired = 0;
+
     private ArrayList _boltArray = new ArrayList();
+
+    public string shotType;
 
 
     void Start()
@@ -50,6 +53,9 @@ public class PlayerController : MonoBehaviour
         // Initialize fire rate and cooldown values
         this._fireRate = 0.45f;
         this._cannonCooldown = 0.00f;
+
+        // Simulate picking up triple shot powerup
+        this.shotType = "triple";
     }
 
     void FixedUpdate()
@@ -71,8 +77,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > this._cannonCooldown) {
 
             if (this._boltCount < 3 || _boltsFired < 3) {
-                //this.fireZeLaser();
-                this.fireTripleShot();
+                this.fireZeLaser();
                 this._boltsFired++;
             } else {
                 this._cannonCooldown = Time.time + this._fireRate;
@@ -128,6 +133,23 @@ public class PlayerController : MonoBehaviour
 
 
     private void fireZeLaser() {
+        Debug.Log(shotType.ToUpper());
+        switch (shotType.ToUpper()) {
+
+            case "TRIPLE":
+                Debug.Log("Tripleshot Enabled");
+                this.fireTripleShot();
+                StartCoroutine("powerupCountdown");
+                break;
+
+            default:
+                this.fireSingleShot();
+                break;    
+        }
+    }
+
+
+    private void fireSingleShot() {
 
         GameObject bolt = Instantiate(
             this._laserBolt, 
@@ -157,5 +179,15 @@ public class PlayerController : MonoBehaviour
             new Vector3(transform.position.x-0.4f, transform.position.y+0.73f, 0.00f),
             Quaternion.Euler(0.00f, 0.00f, 25.00f)
         );
+
+    }
+
+
+    // Power Up reset countdown coroutine
+    private void powerupCountdown() {
+
+        float ticks = 5;
+        float countdownEnd = Time.time + ticks;
+        Debug.Log("Countdown coroutine started");
     }
 }
