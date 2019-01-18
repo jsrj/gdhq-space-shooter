@@ -54,7 +54,7 @@ public class PowerUpLogic : MonoBehaviour
         this._posx = transform.position.x;
 
         // Move power up toward bottom of screen
-        // transform.Translate(Vector2.down * this._descendSpeed * Time.deltaTime);
+        transform.Translate(Vector2.down * this._descendSpeed * Time.deltaTime);
         
         // change drift direction when an edge is reached
         if (this._posx < this._leftEdge) {
@@ -71,14 +71,14 @@ public class PowerUpLogic : MonoBehaviour
         // THEN move left
         if (this.driftDirection == 'l') {
             Debug.Log("Powerup Moving Left");
-            transform.Translate(Vector2.left * Time.deltaTime);
+            transform.Translate(Vector2.left * this._driftSpeed * Time.deltaTime);
         }
 
         // IF x position is at max negative drift range or less than drift range
         // THEN move right
         if (this.driftDirection == 'r') {
             Debug.Log("Powerup Moving Right");
-            transform.Translate(Vector2.left * -Time.deltaTime);
+            transform.Translate(Vector2.right * this._driftSpeed * Time.deltaTime);
         }
 
         // IF x position is exactly 0
