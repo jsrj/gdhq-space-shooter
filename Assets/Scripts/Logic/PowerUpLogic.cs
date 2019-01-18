@@ -14,5 +14,8 @@ public class PowerUpLogic : MonoBehaviour
     void Update()
     {
         
+        // Move power up toward bottom of screen
+
+        // Move power up left and right as it descends
     }
 }
