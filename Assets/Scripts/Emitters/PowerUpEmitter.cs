@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class PowerUpEmitter : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    [SerializeField]
+    private GameObject puTripleShot;
+
+    [SerializeField]
+    private GameObject puScatterShot;
+
+    [SerializeField]
+    private GameObject puNeutronShot;
+
+    [SerializeField]
+    private GameObject puSmartBomb;
+
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         
