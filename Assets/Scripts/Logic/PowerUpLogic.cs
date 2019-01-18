@@ -44,12 +44,17 @@ public class PowerUpLogic : MonoBehaviour
         this._rightEdge = this._driftRange+this.spawnAxis;
 
         // Set a random starting drift direction
-        this.driftDirection = 'l';
+        if (Mathf.FloorToInt(Random.Range(0.00f, 10.00f)) % 2 == 0) {
+            this.driftDirection = 'l';
+        } else {
+            this.driftDirection = 'r';
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+
         // Update value of pos (position on x axis)
         this._posx = transform.position.x;
 
