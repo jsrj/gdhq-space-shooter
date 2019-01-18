@@ -15,7 +15,7 @@ public class PowerUpLogic : MonoBehaviour
     private float _driftRange;
 
     [SerializeField]
-    private string driftDirection;
+    private char driftDirection;
 
     [SerializeField]
     private float _posx;
@@ -38,6 +38,13 @@ public class PowerUpLogic : MonoBehaviour
 
         // Set spawn axis to the x position on instantiation
         this.spawnAxis = transform.position.x;
+
+        // Set left and right drift edges
+        this._leftEdge = -this._driftRange+this.spawnAxis;
+        this._rightEdge = this._driftRange+this.spawnAxis;
+
+        // Set a random starting drift direction
+        this.driftDirection = 'l';
     }
 
     // Update is called once per frame
@@ -49,32 +56,30 @@ public class PowerUpLogic : MonoBehaviour
         // Move power up toward bottom of screen
         // transform.Translate(Vector2.down * this._descendSpeed * Time.deltaTime);
         
-        // clip fractional position value on edges of drift range
-        if (this._posx < -(this._driftRange+this.spawnAxis)) {
-            Debug.Log("Clipping Position to Left Edge");
-            transform.position = new Vector2(-(this._driftRange+this.spawnAxis), transform.position.y);
+        // change drift direction when an edge is reached
+        if (this._posx < this._leftEdge) {
+            this.driftDirection = 'r';
         }
 
-        if (this._posx > (this._driftRange+this.spawnAxis)) {
-            Debug.Log("Clipping Position to Right Edge");
-            transform.position = new Vector2((this._driftRange+this.spawnAxis), transform.position.y);
+        if (this._posx > this._rightEdge) {
+            this.driftDirection = 'l';
         }
     
 
         // Move power up left and right as it descends
         // IF x position is at max drift range or greater than negative drift range
         // THEN move left
-        // if (this._posx >= -(this._driftRange+this.spawnAxis)) {
-        //     Debug.Log("Powerup Moving Left");
-        //     transform.Translate(Vector2.left * Time.deltaTime);
-        // }
+        if (this.driftDirection == 'l') {
+            Debug.Log("Powerup Moving Left");
+            transform.Translate(Vector2.left * Time.deltaTime);
+        }
 
         // IF x position is at max negative drift range or less than drift range
         // THEN move right
-        // if (this._posx <= (this._driftRange+this.spawnAxis)) {
-        //     Debug.Log("Powerup Moving Right");
-        //     transform.Translate(Vector2.left * -Time.deltaTime);
-        // }
+        if (this.driftDirection == 'r') {
+            Debug.Log("Powerup Moving Right");
+            transform.Translate(Vector2.left * -Time.deltaTime);
+        }
 
         // IF x position is exactly 0
         // THEN randomly choose a drift direction
