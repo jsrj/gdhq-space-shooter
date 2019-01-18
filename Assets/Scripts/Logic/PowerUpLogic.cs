@@ -11,11 +11,16 @@ public class PowerUpLogic : MonoBehaviour
     [SerializeField]
     private float _driftSpeed;
 
+    [SerializeField]
+    private float _driftRange;
+
     // Start is called before the first frame update
     void Start()
     {
         this._descendSpeed = 3.00f;
         this._driftSpeed = 4.25f;
+        this._driftRange = 8.00f;
+
     }
 
     // Update is called once per frame
@@ -25,5 +30,6 @@ public class PowerUpLogic : MonoBehaviour
         // Move power up toward bottom of screen
 
         // Move power up left and right as it descends
+
     }
 }
