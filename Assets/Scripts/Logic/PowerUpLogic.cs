@@ -75,14 +75,12 @@ public class PowerUpLogic : MonoBehaviour
         // IF x position is at max drift range or greater than negative drift range
         // THEN move left
         if (this.driftDirection == 'l') {
-            Debug.Log("Powerup Moving Left");
             transform.Translate(Vector2.left * this._driftSpeed * Time.deltaTime);
         }
 
         // IF x position is at max negative drift range or less than drift range
         // THEN move right
         if (this.driftDirection == 'r') {
-            Debug.Log("Powerup Moving Right");
             transform.Translate(Vector2.right * this._driftSpeed * Time.deltaTime);
         }
 
