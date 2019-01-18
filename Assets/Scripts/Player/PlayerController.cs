@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > this._cannonCooldown) {
 
             if (this._boltCount < 3 || _boltsFired < 3) {
-                this.fireZeLaser();
+                this.fireLaser();
                 this._boltsFired++;
             } else {
                 this._cannonCooldown = Time.time + this._fireRate;
@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void fireZeLaser() {
+    private void fireLaser() {
         Debug.Log(shotType.ToUpper());
         switch (shotType.ToUpper()) {
 
