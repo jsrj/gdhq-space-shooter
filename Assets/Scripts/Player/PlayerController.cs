@@ -139,7 +139,6 @@ public class PlayerController : MonoBehaviour
             case "TRIPLE":
                 Debug.Log("Tripleshot Enabled");
                 this.fireTripleShot();
-                StartCoroutine("powerupCountdown");
                 break;
 
             default:
