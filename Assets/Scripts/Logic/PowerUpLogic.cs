@@ -17,7 +17,7 @@ public class PowerUpLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this._descendSpeed = 3.00f;
+        this._descendSpeed = 1.15f;
         this._driftSpeed = 4.25f;
         this._driftRange = 8.00f;
 
