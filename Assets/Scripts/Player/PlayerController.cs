@@ -179,15 +179,5 @@ public class PlayerController : MonoBehaviour
             new Vector3(transform.position.x-0.4f, transform.position.y+0.73f, 0.00f),
             Quaternion.Euler(0.00f, 0.00f, 25.00f)
         );
-
-    }
-
-
-    // Power Up reset countdown coroutine
-    private void powerupCountdown() {
-
-        float ticks = 5;
-        float countdownEnd = Time.time + ticks;
-        Debug.Log("Countdown coroutine started");
     }
 }
