@@ -65,26 +65,16 @@ public class PowerUpLogic : MonoBehaviour
         if (this._posx < this._leftEdge) {
             this.driftDirection = 'r';
         }
-
         if (this._posx > this._rightEdge) {
             this.driftDirection = 'l';
         }
     
-
-        // Move power up left and right as it descends
-        // IF x position is at max drift range or greater than negative drift range
-        // THEN move left
+        // Move power up based on current driftDirection value
         if (this.driftDirection == 'l') {
             transform.Translate(Vector2.left * this._driftSpeed * Time.deltaTime);
         }
-
-        // IF x position is at max negative drift range or less than drift range
-        // THEN move right
         if (this.driftDirection == 'r') {
             transform.Translate(Vector2.right * this._driftSpeed * Time.deltaTime);
         }
-
-        // IF x position is exactly 0
-        // THEN randomly choose a drift direction
     }
 }
