@@ -28,6 +28,7 @@ public class PowerUpLogic : MonoBehaviour
     {
         
         // Move power up toward bottom of screen
+        transform.Translate(Vector2.down * this._descendSpeed * Time.deltaTime);
 
         // Move power up left and right as it descends
 
