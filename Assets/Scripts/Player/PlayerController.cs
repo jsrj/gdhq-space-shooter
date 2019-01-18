@@ -141,6 +141,11 @@ public class PlayerController : MonoBehaviour
                 this.fireTripleShot();
                 break;
 
+            case "SCATTER":
+                Debug.Log("Scattershot Enabled");
+                // this.fireScatterShot();
+                break;    
+
             default:
                 this.fireSingleShot();
                 break;    
