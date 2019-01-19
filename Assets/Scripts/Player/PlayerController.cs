@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float _verticalBounds;
     [SerializeField]
-    private float _horizontalBounds;
+    public float _horizontalBounds;
     [SerializeField]
     private float _accelerationMultiplier;
 
