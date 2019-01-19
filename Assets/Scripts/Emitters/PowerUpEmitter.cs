@@ -32,9 +32,17 @@ public class PowerUpEmitter : MonoBehaviour
 
     void Start()
     {
+        // Define the constant movement speed of the emitter
         this._lateralSpeed = 5.00f;
+
+        // Define the limit in either direction that emitter can move (should match player horizontalBounds)
         this._horizontalBounds = 9.25f; 
+
+        // Define the starting direction. Should be right since emitter first starts on left edge.
         this._currentDirection = 'r';
+
+        // Define emitter starting position on left edge
+        transform.position = new Vector2(-9.25f, 9.00f);
     }
 
 

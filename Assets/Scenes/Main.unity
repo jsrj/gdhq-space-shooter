@@ -318,7 +318,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -446,10 +446,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b06fb1f05e424800a37eb6872a5d342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puTripleShot: {fileID: 0}
-  puScatterShot: {fileID: 0}
-  puNeutronShot: {fileID: 0}
-  puSmartBomb: {fileID: 0}
+  _puTripleShot: {fileID: 0}
+  _puScatterShot: {fileID: 0}
+  _puNeutronShot: {fileID: 0}
+  _puSmartBomb: {fileID: 0}
+  _lateralSpeed: 0
+  _playerRef: {fileID: 1471375464}
+  _horizontalBounds: 0
+  _currentDirection: 0
 --- !u!4 &1072317508
 Transform:
   m_ObjectHideFlags: 0
@@ -458,7 +462,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1072317506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 9, z: 0}
+  m_LocalPosition: {x: -9.25, y: 9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 232434044}
